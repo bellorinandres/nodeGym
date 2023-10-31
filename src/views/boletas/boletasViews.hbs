@@ -1,0 +1,62 @@
+<div class="container mt-5">
+  <h3 class="text-center text-uppercase p-2">Vencimiento</h3>
+  <div class="row">
+    <div class="col-md-6 order-md-2">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Buscar..." />
+        <button class="btn btn-primary" type="button">Buscar</button>
+      </div>
+    </div>
+    <div class="col-md-6 order-md-1">
+      <button class="btn btn-primary">Agregar</button>
+    </div>
+  </div>
+  {{#if boletas}}
+    <table class="table table-responsive text-center">
+      <thead>
+        <tr class="table-dark">
+          <th scope="col">#</th>
+          <th scope="col"># Boleta</th>
+          <th scope="col">Nombre Completo</th>
+          <th scope="col">Fecha Vencimiento</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each boletas}}
+          <tr>
+            <td>{{@index}}</td>
+            <td>{{idboleta}}</td>
+            <td>{{nombreCompleto}}</td>
+            <td>{{fecha_formateada}}</td>
+            <td>
+              <div class="btn-group">
+                <a
+                  href="/detalleBoleta/{{idboleta}}"
+                  data-toggle="collapse"
+                  data-target="#detalles1"
+                  class="btn btn-warning rounded"
+                >Mostrar detalles</a>
+                <div id="detalles1" class="collapse">
+                  <p>Detalles de la persona 1.</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <div class="col-12 text-center">
+      <div class="card" style="width: 350px;">
+        <div class="card-header">
+          <h3>Debes crear una persona</h3>
+        </div>
+        <div class="card-body">
+          <p>Presiona este botón para registrar a una persona en la aplicación.</p>
+          <a href="/addBoletas" class="btn btn-primary">Ir a crear</a>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</div>
