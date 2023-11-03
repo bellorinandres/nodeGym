@@ -4,7 +4,7 @@ const fechaInicioInput = document.getElementById("fechaInicio");
 // Calcular la fecha mínima y máxima permitida (hoy y 7 días en el futuro)
 const fechaActual = new Date();
 const fechaMaxima = new Date(fechaActual);
-fechaMaxima.setDate(fechaMaxima.getDate() + 7);
+fechaMaxima.setDate(fechaMaxima.getDate() + 30);
 
 // Formatear la fecha mínima en el formato "YYYY-MM-DD"
 const fechaMinima = fechaActual.toISOString().split("T")[0];
@@ -26,4 +26,22 @@ fechaInicioInput.addEventListener("change", function () {
 });
 
 // Funcion Para calcular edad
- 
+
+$(document).ready(function () {
+  $("#searchForm").submit(function (event) {
+    event.preventDefault();
+    const searchTerm = $("#searchInput").val();
+
+    $.ajax({
+      type: "GET",
+      url: `/buscar?query=${query}`, // Ruta de búsqueda en el servidor
+      success: function (data) {
+        // Procesa los resultados recibidos del servidor y muéstralos en #searchResults
+        $("#searchResults").html(JSON.stringify(data));
+      },
+      error: function (error) {
+        console.error("Error en la solicitud AJAX: " + error);
+      },
+    });
+  });
+});

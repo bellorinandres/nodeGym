@@ -1,0 +1,33 @@
+<div class="container m-5">
+  <div class="row justify-content-center">
+    <!-- Centra el contenido horizontalmente -->
+    <div class="col-md-8">
+      <h1 class="text-center">Búsqueda de Clientes y Boletas</h1>
+
+      <!-- Formulario de búsqueda -->
+      <form id="searchForm" method="get" action="/buscar">
+        <div class="form-row m-2">
+          <div class="col-12">
+            <input
+              name="query"
+              type="text"
+              class="form-control"
+              id="searchInput"
+              placeholder="Buscar cliente o boleta"
+            />
+          </div>
+        </div>
+        <div class="form-row m-2">
+          <div class="col-12 d-grid gap-2">
+            <a href="/buscar" class="btn btn-primary" type="button">Buscar</a>
+          </div>
+        </div>
+      </form>
+
+      <!-- Resultados de la búsqueda -->
+      <div id="results" class="mt-4">
+        <!-- Aquí se mostrarán los resultados de la búsqueda -->
+      </div>
+    </div>
+  </div>
+</div>

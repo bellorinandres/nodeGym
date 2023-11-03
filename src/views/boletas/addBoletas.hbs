@@ -129,7 +129,9 @@
       <select name="metodoPago" class="form-select" id="metodoPago">
         <option value="">Selecciona un método de pago</option>
         {{#each metodoPago}}
-          <option value="{{idmetodoPago}}">{{tipoPago}}</option>
+          <option
+            value="{{idmetodoPago}}"
+          >{{idmetodoPago}}-{{tipoPago}}</option>
         {{/each}}
       </select>
       <div class="invalid-feedback">
@@ -162,10 +164,10 @@
         Monto abonado inválido
       </div>
     </div>
-    
+
     <button
       type="submit"
-      class="btn btn-primary"
+      class="btn btn-primary btn-lg"
       id="enviarMembresiaBtn"
     >Enviar</button>
   </form>

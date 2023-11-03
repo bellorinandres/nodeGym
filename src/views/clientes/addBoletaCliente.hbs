@@ -1,0 +1,106 @@
+{{#each dataCliente}}
+<div class="container mt-5">
+  <h2 class="mb-4">
+      <a href="/detalleCliente/{{idCliente}}" class="btn btn-light btn-lg ">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      Agregar Membresia Nueva a: {{nombreCompleto}}
+    </h2>
+<!-- Parte superior para mostrar datos de la base de datos -->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="font-weight-bold" for="correoCliente"><strong>DNI:</strong> </label>
+          <input value="{{dniCliente}}" type="text" class="form-control-plaintext" id="correoCliente" readonly>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="nombreCliente"> <strong>Nombre del Cliente:</strong></label>
+            <input value="{{nombreCompleto}}" type="text" class="form-control-plaintext text-uppercase" id="nombreCliente" readonly>
+        </div>
+      </div>
+    </div>
+    <!-- Parte inferior para ingresar datos de membresía -->
+    <form id="membresiaForm" method="post" action="/addBoletaCliente/{{idCliente}}">
+    <h2>Selección de Membresía</h2>
+    <!-- Función para crear campos de formulario -->
+    {{! Input  de Membresia }}
+{{/each}}
+    <div class="mb-3">
+      <label for="tipoMembresia" class="form-label">Tipo de Membresía:</label>
+      <select name="tipoMembresia" class="form-select" id="tipoMembresia">
+        <option value="">Seleccione una Menbresia</option>
+        {{#each membresia}}
+          <option value="{{idmenbresia}}">{{descripcion}}</option>
+        {{/each}}
+      </select>
+      <div class="invalid-feedback">
+        <i class="fas fa-times-circle"></i>
+        Seleccione una membresía válida
+      </div>
+    </div>
+    {{!Input Fecha Inicio }}
+    <div class="mb-3">
+      <label for="fechaInicio" class="form-label">Fecha de Inicio:</label>
+      <input
+        type="date"
+        class="form-control"
+        id="fechaInicio"
+        name="fechaInicio"
+      />
+      <div class="invalid-feedback">
+        <i class="fas fa-times-circle"></i>
+        Fecha de inicio inválida
+      </div>
+    </div>
+    {{! Input Metodo de Pago }}
+    <div class="mb-3">
+      <label for="metodoPago" class="form-label">Método de Pago:</label>
+      <select name="metodoPago" class="form-select" id="metodoPago">
+        <option value="">Selecciona un método de pago</option>
+        {{#each metodoPago}}
+          <option
+            value="{{idmetodoPago}}"
+          >{{idmetodoPago}}-{{tipoPago}}</option>
+        {{/each}}
+      </select>
+      <div class="invalid-feedback">
+        <i class="fas fa-times-circle"></i>
+        Seleccione un método de pago válido
+      </div>
+    </div>
+
+    {{! Input Total a Pagar }}
+    <div class="mb-3">
+      <label for="totalPagar" class="form-label">Total a Pagar:</label>
+      <input
+        name="totalPago"
+        type="text"
+        class="form-control"
+        id="totalPagar"
+      />
+    </div>
+    {{! Monto Abonado }}
+    <div class="mb-3">
+      <label for="montoAbono" class="form-label">Monto Abonado:</label>
+      <input
+        name="montoAbonado"
+        type="text"
+        class="form-control"
+        id="montoAbono"
+      />
+      <div class="invalid-feedback">
+        <i class="fas fa-times-circle"></i>
+        Monto abonado inválido
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      id="enviarMembresiaBtn"
+    >Enviar</button>
+  </form>
+  </div>
+</div>

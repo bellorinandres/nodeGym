@@ -1,0 +1,91 @@
+  {{#each clienteData}}
+<div class="container mt-5">
+  <h2 class="mb-4">
+
+    <a href="/viewClientes" class="btn btn-light btn-lg">
+      <i class="fa-solid fa-arrow-left"></i>
+
+    </a>
+    Detalles del Cliente
+    <a href="/editCliente/{{idCliente}}" class="btn btn-warning mb-3  ">
+      <i class="fa-regular fa-pen-to-square"></i>
+      Editar
+    </a>
+  </h2>
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <p><strong>DNI <i class="fa-solid fa-id-card"></i> :</strong>
+          {{dniCliente}}</p>
+        <p><strong>Nombres:</strong> {{nombreCliente}}</p>
+        <p><strong>Apellidos:</strong> {{apellidoCliente}}</p>
+        <p><strong>Fecha de Nacimiento:</strong> {{fNac}}</p>
+        <p><strong><i class="fa-solid fa-envelope"></i>: </strong>
+          <a href="mailto:{{emailCliente}}">{{emailCliente}}</a></p>
+        <p><strong><i class="fa-brands fa-whatsapp"></i>: </strong>
+          <a href="https://wa.me/+51{{telefono}}" target="_blank">
+            {{telefono}}
+          </a>
+
+        </p>
+      </div>
+    </div>
+    <h2 class="mt-4">Historial de Boletas
+      <a
+        href="/addBoletaCliente/{{idCliente}}"
+        class="btn btn-success  mb-3"
+      >
+        <i class="fa-solid fa-plus"></i>
+        Agregar Nueva Boleta
+      </a>
+    </h2>
+    <!-- Agregar el enlace "Agregar Nueva Boleta" aquí -->
+
+  {{/each}}
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Indice</th>
+        <th>Boleta</th>
+        <th>Detalles</th>
+        <th>Monto Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Aquí puedes usar un #each de Handlebars para recorrer el historial de boletas -->
+      {{#each clienteBoleta}}
+        <tr>
+          <td>
+            {{@index}}
+          </td>
+          <td>
+            <p><strong>ID de Boleta:</strong> {{idboleta}}</p>
+            <p><strong>Estatus:</strong> {{nombreEstatus}}</p>
+            <p><strong>Fecha Emisión:</strong> {{fBoleta}}</p>
+          </td>
+          <td>
+            <p><strong>Duración:</strong> {{descripcion}}</p>
+            <p><strong>Fecha Inicio:</strong> {{fStart}}</p>
+            <p><strong>Fecha Final:</strong> {{fEnd}}</p>
+          </td>
+          <td>
+            <p><strong>Monto:</strong> {{totalBoleta}}</p>
+            <p><strong>Método de Pago:</strong> {{tipoPago}}</p>
+            <p><a
+                href="/deleteBoleta/{{idCliente}}"
+                class="btn btn-danger mb-3"
+              >
+                <i class="fa-solid fa-delete-left"></i>
+                Eliminar Boleta
+              </a></p>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <div class="text-center">
+    <a href="/viewClientes" class="btn btn-primary">
+      <i class="fa-solid fa-arrow-left"></i>
+      Volver a la página anterior
+    </a>
+  </div>
+</div>

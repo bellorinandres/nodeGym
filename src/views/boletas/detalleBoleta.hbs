@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Detalle de Boletas</h1>
+
+  {{#each boleta}}
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>ID de Boleta:</strong> {{idboleta}}</p>
+        <p><strong>Fecha de Boleta:</strong> {{fBoleta}}</p>
+        <p><strong>Nombre Completo:</strong> {{nombreCompleto}}</p>
+        <p><strong>Fecha de Inicio:</strong> {{fStart}}</p>
+        <p><strong>Fecha Final:</strong> {{fEnd}}</p>
+        <p><strong>Estado:</strong> {{nombreEstatus}}</p>
+        <p><strong>Método de Pago:</strong> {{tipoPago}}</p>
+        <p><strong>Descripción:</strong> {{descripcion}}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Total de Boleta:</strong> s/ {{totalBoleta}}</p>
+      </div>
+    </div>
+    <hr />
+  {{/each}}
+
+  <div class="text-center">
+    <a href="/boletas" class="btn btn-primary">
+      <i class="fa-solid fa-arrow-left"></i>
+      Volver a la página anterior
+    </a>
+  </div>
+</div>

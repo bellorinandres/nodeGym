@@ -4,11 +4,19 @@
         <div class="col-md-6 order-md-2">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Buscar...">
-                <button class="btn btn-primary" type="button">Buscar</button>
+                <button class="btn btn-primary" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                    Buscar
+                </button>
             </div>
         </div>
         <div class="col-md-6 order-md-1">
-            <button class="btn btn-primary">Agregar</button>
+            <a href="/add" class="btn btn-success ">
+            <i class="fa-solid fa-plus"></i>
+            Agregar
+            </a>
         </div>
     </div>
    {{#if clientes}}
@@ -19,7 +27,6 @@
                         <th scope="col" class="col-2">DNI</th>
                         <th scope="col" class="col-3">Nombre Completo</th>
                         <th scope="col" class="col-3">Telefono</th>
-                        
                         <th scope="col" class="col-3">Acciones</th>
                     </tr>
                 </thead>
@@ -28,12 +35,15 @@
                     <tr>
                         <td>{{@index}}</td>
                         <td>{{dniCliente}}</td>
-                        <td>{{nombreCompleto}}</td>
+                        <td>
+                            <i class="fa-solid fa-user"></i>
+                            {{nombreCompleto}}</td>
                         <td>{{telefono}}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="/editCliente/{{id}}" class="btn btn-warning p-2">
-                                    <i class="fa-solid fa-pencil"></i> Editar
+                                <a href="/detalleCliente/{{idCliente}}" class="btn btn-info">
+                                    Ver
+                                    <i class="fa-solid fa-arrow-right"></i> 
                                 </a>
                             </div>
                         </td>
@@ -56,15 +66,4 @@
             {{/if}}
         </tbody>
     </table>
-</div>
-
-
-
-<div class="container">
-    <div class="row mt-5">
-        <div class="col-12">
-            <h3 class="text-center text-uppercase p-2">Lista de personas</h3>
-            
-        </div>
-    </div>
 </div>

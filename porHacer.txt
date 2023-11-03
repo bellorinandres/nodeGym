@@ -1,7 +1,7 @@
 porHacer
     - Verificacion de los datos al insertar los datos en las boletas.
     - Verificacion si esta ya insertado el cliente para solo extraer sus datos necesarios para la boleta.
-    - Detalles de la Boleta
+    - Detalles de la Boleta (LISTO)
     - Detalles de los Clientes
     - Actualizar las Clientes
-    - Ajustar los Datos del Estatus de la Boleta
+    - Ajustar los Datos del Estatus de la Boleta(LISTO)

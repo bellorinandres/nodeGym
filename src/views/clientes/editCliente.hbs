@@ -1,0 +1,88 @@
+{{#each clienteData}}
+  <div class="container mt-5">
+
+    <h2 class="mb-4">
+      <a href="/detalleCliente/{{idCliente}}" class="btn btn-light btn-lg">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      Editar Información
+      <i class="fa-regular fa-pen-to-square"></i>
+    </h2>
+    <form method="post" action="/editCliente/{{idCliente}}">
+      <!-- Ajusta la acción del formulario según tu ruta -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="dni" class="form-label">DNI</label>
+            <input
+              placeholder="{{dniCliente}}"
+              type="text"
+              class="form-control"
+              id="dni"
+              name="dniCliente"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombres: </label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              name="nombreCliente"
+              placeholder="{{nombreCliente}}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="apellido" class="form-label">Apellidos: </label>
+            <input
+              type="text"
+              class="form-control"
+              id="apellido"
+              name="apellidoCliente"
+              placeholder="{{apellidoCliente}}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono: </label>
+            <input
+              type="text"
+              class="form-control"
+              id="telefono"
+              name="telefono"
+              placeholder="{{telefono}}"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo: </label>
+            <input
+              type="email"
+              class="form-control"
+              id="correo"
+              name="emailCliente"
+              placeholder="{{emailCliente}}"
+            />
+          </div>
+
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+  </div>
+{{/each}}
+<script>
+  $(document).ready(function() { let formData = {}; // Objeto para almacenar los
+  datos modificados // Agregar un controlador de cambios a los campos de entrada
+  $('input, select').change(function() { const inputName = $(this).attr('name');
+  const inputValue = $(this).val(); formData[inputName] = inputValue; //
+  Almacena los datos modificados en el objeto formData }); // Manejar el envío
+  del formulario $('#editForm').submit(function(event) { event.preventDefault();
+  // Realiza una solicitud AJAX para enviar solo los datos modificados $.ajax({
+  type: 'POST', url: '/updateCliente', // Ajusta la URL según tu ruta en el
+  servidor data: formData, // Envía solo los datos modificados success:
+  function(response) { console.log('Cambios guardados con éxito.'); // Puedes
+  mostrar un mensaje de éxito o redirigir a otra página }, error:
+  function(error) { console.error('Error al guardar los cambios: ' + error); }
+  }); }); });
+</script>
