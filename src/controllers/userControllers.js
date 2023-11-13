@@ -309,7 +309,7 @@ b.fechaBoleta DESC;`;
     const [result] = await pool.query(queryControl);
     const [resultTotal] = await pool.query(queryTotal);
     const [consultaTotal] = await pool.query(total);
-    console.log(consultaTotal);
+    console.log(result);
     res.render("control/viewsControl", {
       boletaResult: result,
       totalResult: resultTotal,

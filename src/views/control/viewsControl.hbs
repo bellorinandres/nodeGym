@@ -1,6 +1,12 @@
+<!-- Input de Fecha -->
+
 <!-- Total por Método de Pago -->
 <div class="row">
   <h2>Control Diario</h2>
+  <div class="form-group">
+    <label for="fechaInput">Seleccionar Fecha:</label>
+    <input type="date" class="form-control" id="fechaInput" />
+  </div>
   <div class="col-md-8 table-responsive">
     <table class="table">
       <h6>Total de Pagos</h6>
@@ -33,10 +39,14 @@
 
 </div>
 <!-- Tabla de Boleta -->
-<table class="table table-responsive-md">
+<table class="table table-responsive-sm">
+  {{#with boletaResult}}
+    <h5>
+      {{fecha_formateada}}
+    </h5>
+  {{/with}}
   <thead>
     <tr>
-      <th>Fecha</th>
       <th>Boleta</th>
       <th>Nombre</th>
       <th>Tipo de Pago</th>
@@ -44,14 +54,23 @@
     </tr>
   </thead>
   <tbody>
+
     {{#each boletaResult}}
       <tr>
-        <td>{{fecha_formateada}}</td>
         <td>{{idBoleta}}</td>
         <td>{{nombreCompleto}}</td>
         <td>{{tipoPago}}</td>
         <td> S./ {{totalBoleta}}</td>
       </tr>
     {{/each}}
+
   </tbody>
+
 </table>
+<!-- Botón de Exportar PDF -->
+<div class="container mt-3">
+  <button class="btn btn-danger">
+    <i class="fas fa-file-pdf"></i>
+    Exportar PDF
+  </button>
+</div>
