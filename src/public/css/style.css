@@ -5,3 +5,23 @@
 
 /* Agregar estilos personalizados */
 /* ... */
+/* Estilos específicos para el tema claro */
+body.light {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* Estilos específicos para el tema oscuro */
+body.dark {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+/* Estilos adicionales específicos para la barra de navegación */
+.navbar-light {
+  background-color: #f8f9fa; /* Color de fondo para tema claro */
+}
+
+.navbar-dark {
+  background-color: #343a40; /* Color de fondo para tema oscuro */
+}

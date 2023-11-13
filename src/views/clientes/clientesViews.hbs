@@ -20,23 +20,33 @@
         </div>
     </div>
    {{#if clientes}}
-            <table class="table table-responsive text-justify">
+            <table class="table table-sm align-middle">
                 <thead>
                     <tr class="table-dark">
-                        <th scope="col">DNI</th>
-                        <th scope="col">Nombre Completo</th>
-                        <th scope="col">Telefono</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col" class="col-1">#</th>
+                        <th scope="col" class="col-2">DNI</th>
+                        <th scope="col" class="col-3">Nombre Completo</th>
+                        <th scope="col" class="col-3">Telefono</th>
+                        <th scope="col" class="col-3">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each clientes}}
                     <tr>
+                        <td>{{@index}}</td>
                         <td>{{dniCliente}}</td>
                         <td>
-                            <i class="fa-solid fa-user"></i>
-                            {{nombreCompleto}}</td>
-                        <td>{{telefono}}</td>
+                            <a href="/detalleCliente/{{idCliente}}" class="btn btn-light">
+                                <i class="fa-solid fa-user"></i>
+                                {{nombreCompleto}}
+                            </a>
+                        </td>
+                        <td> 
+                            <a class="btn btn-success" href="https://wa.me/+51{{telefono}}" target="_blank">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            {{telefono}}
+                            </a>
+                        </td>
                         <td>
                             <div class="btn-group">
                                 <a href="/detalleCliente/{{idCliente}}" class="btn btn-info">

@@ -1,19 +1,14 @@
 DELIMITER //
-CREATE FUNCTION calcularFechaFinal(fechaInicial DATE, valor INT) RETURNS DATE
+CREATE TRIGGER actualizaStatusBoleta BEFORE INSERT ON boleta
+FOR EACH ROW
 BEGIN
-    DECLARE fechaFinal DATE;
-    
-    IF valor = 1 THEN
-        SET fechaFinal = DATE_ADD(fechaInicial, INTERVAL 1 WEEK);
-    ELSEIF valor = 2 THEN
-        SET fechaFinal = DATE_ADD(fechaInicial, INTERVAL 1 MONTH);
-    ELSEIF valor = 3 THEN
-        SET fechaFinal = DATE_ADD(fechaInicial, INTERVAL 3 MONTH);
-    ELSE
-        SET fechaFinal = fechaInicial;
-    END IF;
-
-    RETURN fechaFinal;
+  SET NEW.statusBoleta =
+    CASE
+      WHEN NEW.fechaStart > CURDATE() THEN 1
+      WHEN NEW.fechaStart <= CURDATE() AND NEW.fechaEnd >= CURDATE() THEN 2
+      WHEN NEW.fechaEnd < CURDATE() THEN 3
+      WHEN NEW.fechaEnd >= DATE_ADD(CURDATE(), INTERVAL 1 MONTH) THEN 4
+    END;
 END;
 //
 DELIMITER ;
