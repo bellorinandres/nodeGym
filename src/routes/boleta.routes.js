@@ -3,6 +3,7 @@ import {
   addBoletaCliente,
   addBoletas,
   buscador,
+  controlDiario,
   detalleBoleta,
   detalleCliente,
   editCliente,
@@ -16,6 +17,7 @@ import {
 const router = Router();
 
 // Rutas de Boletas
+
 // Rutas Get
 router.get("/boletas", listarBoletas);
 router.get("/add", addBoletas);
@@ -28,7 +30,11 @@ router.get("/viewClientes", listarClientes);
 router.get("/detalleCliente/:id", detalleCliente);
 router.get("/addBoletaCliente/:id", insertBoletaCliente);
 router.get("/editCliente/:id", editCliente);
-router.post("/editCliente/:id", updateCliente)
+router.post("/editCliente/:id", updateCliente);
 // Buscador
 router.get("/buscar", buscador);
+
+//Control Diario
+router.get("/control", controlDiario);
+
 export default router;

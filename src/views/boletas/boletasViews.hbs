@@ -35,7 +35,6 @@
     <table class="table table-responsive text-center">
       <thead>
         <tr class="table-dark">
-          <th scope="col">#</th>
           <th scope="col"># Boleta</th>
           <th scope="col">Nombre Completo</th>
           <th scope="col">Fecha Vencimiento</th>
@@ -45,7 +44,6 @@
       <tbody>
         {{#each boletas}}
           <tr>
-            <td>{{@index}}</td>
             <td>{{idboleta}}</td>
             <td>
               <a href="/detalleCliente/{{idCliente}}" class="btn btn-light">

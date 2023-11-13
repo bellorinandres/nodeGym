@@ -1,0 +1,57 @@
+<!-- Total por Método de Pago -->
+<div class="row">
+  <h2>Control Diario</h2>
+  <div class="col-md-8 table-responsive">
+    <table class="table">
+      <h6>Total de Pagos</h6>
+      <thead>
+        <tr>
+          {{#each totalResult}}
+            <th>{{tipoPago}}: S./ {{totalPorTipoPago}}</th>
+          {{/each}}
+        </tr>
+      </thead>
+
+    </table>
+  </div>
+
+  {{! Total Diario }}
+
+  <div class="col-md-4 table-responsive">
+    <table class="table">
+      <h6>Total del Dia</h6>
+      <thead>
+        <tr>
+          {{#each totalDia}}
+            <th> S./ {{totalDelDia}}</th>
+          {{/each}}
+        </tr>
+      </thead>
+
+    </table>
+  </div>
+
+</div>
+<!-- Tabla de Boleta -->
+<table class="table table-responsive-md">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Boleta</th>
+      <th>Nombre</th>
+      <th>Tipo de Pago</th>
+      <th>Total de Boleta</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each boletaResult}}
+      <tr>
+        <td>{{fecha_formateada}}</td>
+        <td>{{idBoleta}}</td>
+        <td>{{nombreCompleto}}</td>
+        <td>{{tipoPago}}</td>
+        <td> S./ {{totalBoleta}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

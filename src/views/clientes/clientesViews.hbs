@@ -20,20 +20,18 @@
         </div>
     </div>
    {{#if clientes}}
-            <table class="table table-responsive text-center">
+            <table class="table table-responsive text-justify">
                 <thead>
                     <tr class="table-dark">
-                        <th scope="col" class="col-1">#</th>
-                        <th scope="col" class="col-2">DNI</th>
-                        <th scope="col" class="col-3">Nombre Completo</th>
-                        <th scope="col" class="col-3">Telefono</th>
-                        <th scope="col" class="col-3">Acciones</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">Nombre Completo</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each clientes}}
                     <tr>
-                        <td>{{@index}}</td>
                         <td>{{dniCliente}}</td>
                         <td>
                             <i class="fa-solid fa-user"></i>
