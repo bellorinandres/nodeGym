@@ -1,9 +1,14 @@
 <div class="container mt-5">
   <form id="formulario" method="post" action="/addBoletas">
-    <h2>Información del Cliente</h2>
+    <h2>
+      <i class="fa-solid fa-circle-info"></i>
+      Información del Cliente
+    </h2>
     {{! Formulario de Numero de Identidad }}
     <div class="mb-3">
-      <label for="dni" class="form-label">Numero de Identidad:</label>
+      <label for="dni" class="form-label">
+        <i class="fa-solid fa-address-card"></i>
+        Documento de Identidad:</label>
       <input
         name="numeroIdentidad"
         type="text"
@@ -18,7 +23,9 @@
     </div>
     {{! Imput de Nombre }}
     <div class="mb-3">
-      <label for="nombre" class="form-label">Nombre:</label>
+      <label for="nombre" class="form-label">
+        <i class="fa-regular fa-user"></i>
+        Nombres:</label>
       <input
         name="nombre"
         type="text"
@@ -33,7 +40,9 @@
     </div>
     {{! Input de Apellido }}
     <div class="mb-3">
-      <label for="apellido" class="form-label">Apellido:</label>
+      <label for="apellido" class="form-label">
+        <i class="fa-regular fa-user"></i>
+        Apellidos:</label>
       <input
         name="apellido"
         type="text"
@@ -48,7 +57,9 @@
     </div>
     {{! Input de Telefono }}
     <div class="mb-3">
-      <label for="telefono" class="form-label">Teléfono:</label>
+      <label for="telefono" class="form-label">
+        <i class="fa-solid fa-phone"></i>
+        Teléfono:</label>
       <input
         name="telefono"
         type="text"
@@ -63,7 +74,9 @@
     </div>
     {{! Input Correo }}
     <div class="mb-3">
-      <label for="correo" class="form-label">Correo Electrónico:</label>
+      <label for="correo" class="form-label">
+        <i class="fa-solid fa-at"></i>
+        Correo Electrónico:</label>
       <input
         name="correo"
         type="email"
@@ -76,28 +89,19 @@
         Correo inválido
       </div>
     </div>
-    {{! Input Fecha }}
-    <div class="mb-3">
-      <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
-      <input
-        name="fechaNac"
-        type="date"
-        class="form-control"
-        id="fechaNacimiento"
-      />
-      <div class="invalid-feedback">
-        <i class="fas fa-times-circle"></i>
-        Fecha de nacimiento inválida
-      </div>
-    </div>
 
     <p id="mensajeError" class="text-danger"></p>
     {{! Parte del Formulario de Membresia }}
-    <h2>Selección de Membresía</h2>
+    <h2>
+      <i class="fa-solid fa-clipboard-check"></i>
+      Selección de Membresía
+    </h2>
     <!-- Función para crear campos de formulario -->
     {{! Input  de Membresia }}
     <div class="mb-3">
-      <label for="tipoMembresia" class="form-label">Tipo de Membresía:</label>
+      <label for="tipoMembresia" class="form-label">
+        <i class="fa-solid fa-1"></i>
+        Tipo de Membresía:</label>
       <select name="tipoMembresia" class="form-select" id="tipoMembresia">
         <option value="">Seleccione una Menbresia</option>
         {{#each membresia}}
@@ -111,7 +115,9 @@
     </div>
     {{!Input Fecha Inicio }}
     <div class="mb-3">
-      <label for="fechaInicio" class="form-label">Fecha de Inicio:</label>
+      <label for="fechaInicio" class="form-label">
+        <i class="fa-solid fa-play"></i>
+        Fecha de Inicio:</label>
       <input
         type="date"
         class="form-control"
@@ -125,7 +131,9 @@
     </div>
     {{! Input Metodo de Pago }}
     <div class="mb-3">
-      <label for="metodoPago" class="form-label">Método de Pago:</label>
+      <label for="metodoPago" class="form-label">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Método de Pago:</label>
       <select name="metodoPago" class="form-select" id="metodoPago">
         <option value="">Selecciona un método de pago</option>
         {{#each metodoPago}}
@@ -142,7 +150,9 @@
 
     {{! Input Total a Pagar }}
     <div class="mb-3">
-      <label for="totalPagar" class="form-label">Total a Pagar:</label>
+      <label for="totalPagar" class="form-label">
+        <i class="fa-solid fa-calculator"></i>
+        Total a Pagar:</label>
       <input
         name="totalPago"
         type="text"
@@ -152,7 +162,9 @@
     </div>
     {{! Monto Abonado }}
     <div class="mb-3">
-      <label for="montoAbono" class="form-label">Monto Abonado:</label>
+      <label for="montoAbono" class="form-label">
+        <i class="fa-solid fa-arrow-down-wide-short"></i>
+        Monto Abonado:</label>
       <input
         name="montoAbonado"
         type="text"
@@ -169,6 +181,9 @@
       type="submit"
       class="btn btn-primary btn-lg"
       id="enviarMembresiaBtn"
-    >Enviar</button>
+    >
+      <i class="fa-solid fa-share"></i>
+      Enviar
+    </button>
   </form>
 </div>

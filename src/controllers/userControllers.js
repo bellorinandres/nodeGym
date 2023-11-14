@@ -12,7 +12,7 @@ export const listarBoletas = async (req, res) => {
       m.tipoPago,
       (SELECT CONCAT(c.nombreCliente, ' ', c.apellidoCliente) FROM cliente AS c WHERE c.idCliente = b.idCliente) AS nombreCompleto
     FROM boleta AS b
-    INNER JOIN metodopago AS m ON b.metodoPago = m.idmetodopago
+    INNER JOIN metodoPago AS m ON b.metodoPago = m.idmetodoPago
     ORDER BY b.fechaEnd ASC;
   `;
     const [result] = await pool.execute(sql);
@@ -25,7 +25,7 @@ export const listarBoletas = async (req, res) => {
 export const addBoletas = async (req, res) => {
   try {
     // Consulta para obtener métodos de pago
-    const sqlMetodoPago = "SELECT * FROM metodopago;";
+    const sqlMetodoPago = "SELECT * FROM metodoPago;";
     const [consultaMetodoPago] = await pool.execute(sqlMetodoPago);
 
     // Consulta para obtener membresías
@@ -52,7 +52,7 @@ export const newBoleta = async (req, res) => {
     apellido,
     telefono,
     correo,
-    fechaNac,
+    
     fechaInicio,
     tipoMembresia,
     metodoPago,
@@ -65,8 +65,8 @@ export const newBoleta = async (req, res) => {
     await conn.beginTransaction();
     // Aqui Insertamos los datos de la persona
     const [clientResult] = await conn.execute(
-      "INSERT INTO cliente(dniCliente, nombreCliente, apellidoCliente,emailCliente, telefono, fechaNacimiento) VALUES (?,?,?,?,?,?)",
-      [numeroIdentidad, nombre, apellido, correo, telefono, fechaNac]
+      "INSERT INTO cliente(dniCliente, nombreCliente, apellidoCliente,emailCliente, telefono, ) VALUES (?,?,?,?,?)",
+      [numeroIdentidad, nombre, apellido, correo, telefono, ]
     );
     // Recoge el ultimo id Insertado
     const lastId = clientResult.insertId;
@@ -121,7 +121,7 @@ export const detalleCliente = async (req, res) => {
     FROM
       boleta AS b
     INNER JOIN metodoPago AS mp ON b.metodoPago = mp.idmetodoPago
-    INNER JOIN estatus AS es ON b.statusBoleta = es.idstatus
+    INNER JOIN Estatus AS es ON b.statusBoleta = es.idstatus
     INNER JOIN menbresia AS m ON b.idMenbresiaBoleta = m.idmenbresia
     WHERE
     b.idcliente = ?`;
@@ -148,7 +148,7 @@ export const detalleBoleta = async (req, res) => {
       FROM
         boleta AS b
       INNER JOIN metodoPago AS mp ON b.metodoPago = mp.idmetodoPago
-      INNER JOIN estatus AS es ON b.statusBoleta = es.idstatus
+      INNER JOIN Estatus AS es ON b.statusBoleta = es.idstatus
       INNER JOIN menbresia AS m ON b.idMenbresiaBoleta = m.idmenbresia
       WHERE
       b.idboleta = ?`;
@@ -187,7 +187,7 @@ export const insertBoletaCliente = async (req, res) => {
   WHERE
     idCliente = ?`;
 
-  const sqlMetodoPago = "SELECT * FROM metodopago;";
+  const sqlMetodoPago = "SELECT * FROM metodoPago;";
   const [consultaMetodoPago] = await pool.execute(sqlMetodoPago);
 
   // Consulta para obtener membresías

@@ -45,3 +45,18 @@ $(document).ready(function () {
     });
   });
 });
+// Cambio de Color
+document.addEventListener("DOMContentLoaded", function () {
+  const themeToggle = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  themeToggle.addEventListener("click", () => {
+    if (body.classList.contains("light")) {
+      body.classList.remove("light");
+      body.classList.add("dark");
+    } else {
+      body.classList.remove("dark");
+      body.classList.add("light");
+    }
+  });
+});
