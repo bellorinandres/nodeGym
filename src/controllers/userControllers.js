@@ -54,7 +54,6 @@ export const newBoleta = async (req, res) => {
     nombre,
     apellido,
     telefono,
-    correo,
     fechaNac,
     fechaInicio,
     tipoMembresia,
@@ -62,14 +61,13 @@ export const newBoleta = async (req, res) => {
     totalPago,
   } = req.body;
   const conn = await pool.getConnection();
-  console.log(metodoPago);
   try {
     // Iniciar la transacción
     await conn.beginTransaction();
     // Aqui Insertamos los datos de la persona
     const [clientResult] = await conn.execute(
-      "INSERT INTO cliente(dniCliente, nombreCliente, apellidoCliente,emailCliente, telefono, fechaNacimiento) VALUES (?,?,?,?,?,?)",
-      [numeroIdentidad, nombre, apellido, correo, telefono, fechaNac]
+      "INSERT INTO cliente(dniCliente, nombreCliente, apellidoCliente, telefono ) VALUES (?,?,?,?)",
+      [numeroIdentidad, nombre, apellido, telefono]
     );
     // Recoge el ultimo id Insertado
     const lastId = clientResult.insertId;
@@ -310,7 +308,6 @@ b.fechaBoleta DESC;`;
     const [result] = await pool.query(queryControl);
     const [resultTotal] = await pool.query(queryTotal);
     const [consultaTotal] = await pool.query(total);
-    console.log(result);
     res.render("control/viewsControl", {
       boletaResult: result,
       totalResult: resultTotal,

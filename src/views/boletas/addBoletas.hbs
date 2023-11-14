@@ -23,7 +23,10 @@
     </div>
     {{! Imput de Nombre }}
     <div class="mb-3">
-      <label for="nombre" class="form-label">Nombre:</label>
+      <label for="nombre" class="form-label">
+        <i class="fa-solid fa-user"></i>
+        Nombres:
+      </label>
       <input
         name="nombre"
         type="text"
@@ -38,7 +41,10 @@
     </div>
     {{! Input de Apellido }}
     <div class="mb-3">
-      <label for="apellido" class="form-label">Apellido:</label>
+      <label for="apellido" class="form-label">
+        <i class="fa-solid fa-user"></i>
+        Apellidos:
+      </label>
       <input
         name="apellido"
         type="text"
@@ -68,25 +74,6 @@
         Teléfono inválido
       </div>
     </div>
-    {{! Input Correo }}
-    <div class="mb-3">
-      <label for="correo" class="form-label">
-        <i class="fa-solid fa-at"></i>
-        Correo Electrónico:</label>
-      <input
-        name="correo"
-        type="email"
-        class="form-control"
-        id="correo"
-        placeholder="Correo Electrónico"
-      />
-      <div class="invalid-feedback">
-        <i class="fas fa-times-circle"></i>
-        Correo inválido
-      </div>
-    </div>
-
-    <p id="mensajeError" class="text-danger"></p>
     {{! Parte del Formulario de Membresia }}
     <h2>
       <i class="fa-solid fa-clipboard-check"></i>

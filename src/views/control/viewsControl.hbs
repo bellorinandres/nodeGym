@@ -1,76 +1,70 @@
 <!-- Input de Fecha -->
+<div class="container mt-5">
+  <!-- Total por Método de Pago -->
+  <div class="row">
+    <h2><i class="fa-solid fa-book"></i> Control Diario</h2>
+    <div class="form-group">
+      <label for="fechaInput"> Seleccionar Fecha:</label>
+      <input type="date" class="form-control" id="fechaInput" />
+    </div>
+    <div class="col-md-8 table-responsive">
+      <table class="table table-sm align-middle">
+        <h6>Total de Pagos</h6>
+        <thead>
+          <tr>
+            {{#each totalResult}}
+              <th>{{tipoPago}}: S./ {{totalPorTipoPago}}</th>
+            {{/each}}
+          </tr>
+        </thead>
 
-<!-- Total por Método de Pago -->
-<div class="row">
-  <h2>Control Diario</h2>
-  <div class="form-group">
-    <label for="fechaInput">Seleccionar Fecha:</label>
-    <input type="date" class="form-control" id="fechaInput" />
+      </table>
+    </div>
+
+    {{! Total Diario }}
+
+    <div class="col-md-4 table-responsive">
+      <table class="table table-sm align-middle">
+        <h6>Total del Dia</h6>
+        <thead>
+          <tr>
+            {{#each totalDia}}
+              <th> S./ {{totalDelDia}}</th>
+            {{/each}}
+          </tr>
+        </thead>
+
+      </table>
+    </div>
+
   </div>
-  <div class="col-md-8 table-responsive">
-    <table class="table">
-      <h6>Total de Pagos</h6>
-      <thead>
-        <tr>
-          {{#each totalResult}}
-            <th>{{tipoPago}}: S./ {{totalPorTipoPago}}</th>
-          {{/each}}
-        </tr>
-      </thead>
-
-    </table>
-  </div>
-
-  {{! Total Diario }}
-
-  <div class="col-md-4 table-responsive">
-    <table class="table">
-      <h6>Total del Dia</h6>
-      <thead>
-        <tr>
-          {{#each totalDia}}
-            <th> S./ {{totalDelDia}}</th>
-          {{/each}}
-        </tr>
-      </thead>
-
-    </table>
-  </div>
-
-</div>
-<!-- Tabla de Boleta -->
-<table class="table table-responsive-sm">
-  {{#with boletaResult}}
-    <h5>
-      {{fecha_formateada}}
-    </h5>
-  {{/with}}
-  <thead>
-    <tr>
-      <th>Boleta</th>
-      <th>Nombre</th>
-      <th>Tipo de Pago</th>
-      <th>Total de Boleta</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    {{#each boletaResult}}
+  <!-- Tabla de Boleta -->
+  <table class="table table-sm align-middle">
+    <thead>
       <tr>
-        <td>{{idBoleta}}</td>
-        <td>{{nombreCompleto}}</td>
-        <td>{{tipoPago}}</td>
-        <td> S./ {{totalBoleta}}</td>
+        <th>Boleta</th>
+        <th>Nombre</th>
+        <th>Tipo de Pago</th>
+        <th>Total de Boleta</th>
       </tr>
-    {{/each}}
+    </thead>
 
-  </tbody>
-
-</table>
-<!-- Botón de Exportar PDF -->
-<div class="container mt-3">
-  <button class="btn btn-danger">
-    <i class="fas fa-file-pdf"></i>
-    Exportar PDF
-  </button>
+    <tbody>
+      {{#each boletaResult}}
+        <tr>
+          <td>{{idBoleta}}</td>
+          <td>{{nombreCompleto}}</td>
+          <td>{{tipoPago}}</td>
+          <td> S./ {{totalBoleta}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <!-- Botón de Exportar PDF -->
+  <div class="container mt-3">
+    <button class="btn btn-danger">
+      Exportar
+      <i class="fa-regular fa-file-pdf"></i>
+    </button>
+  </div>
 </div>
