@@ -1,7 +1,10 @@
 import pool from "../database.js";
 import { calcularFechaFinal } from "./moduloFunciones.js";
 
-// Lista todas las Boletas con los Datos de Nombre y Apellido del cliente
+/*
+ * Lista todas las Boletas con
+ * Datos de Nombre y Apellido del cliente
+ */
 export const listarBoletas = async (req, res) => {
   try {
     const sql = `
@@ -52,7 +55,7 @@ export const newBoleta = async (req, res) => {
     apellido,
     telefono,
     correo,
-    
+    fechaNac,
     fechaInicio,
     tipoMembresia,
     metodoPago,
@@ -65,8 +68,8 @@ export const newBoleta = async (req, res) => {
     await conn.beginTransaction();
     // Aqui Insertamos los datos de la persona
     const [clientResult] = await conn.execute(
-      "INSERT INTO cliente(dniCliente, nombreCliente, apellidoCliente,emailCliente, telefono, ) VALUES (?,?,?,?,?)",
-      [numeroIdentidad, nombre, apellido, correo, telefono, ]
+      "INSERT INTO cliente(dniCliente, nombreCliente, apellidoCliente,emailCliente, telefono, fechaNacimiento) VALUES (?,?,?,?,?,?)",
+      [numeroIdentidad, nombre, apellido, correo, telefono, fechaNac]
     );
     // Recoge el ultimo id Insertado
     const lastId = clientResult.insertId;
@@ -78,11 +81,11 @@ export const newBoleta = async (req, res) => {
       [lastId, fechaInicio, fechaFinal, tipoMembresia, metodoPago, totalPago]
     );
 
-    res.render("boletas/boletasViews");
+    // res.render("boletas/boletasViews");
     // Confirmar la transacción
     await conn.commit();
 
-    res.status(200).render("boletas/insertCorrect");
+    res.status(200).render("boletas/boletasViews");
   } catch (error) {
     // Deshacer la transacción en caso de error
     await conn.rollback();
@@ -253,5 +256,67 @@ export const updateCliente = async (req, res) => {
     res.redirect(`/detalleCliente/${id}`);
   } catch (error) {
     console.error("Error al actualizar el registro: " + error);
+  }
+};
+
+export const controlDiario = async (req, res) => {
+  const queryControl = `SELECT 
+  DATE_FORMAT(b.fechaBoleta, '%d/%m/%Y') AS fecha_formateada,
+  c.dniCliente,
+  CONCAT(c.nombreCliente, ' ', c.apellidoCliente) AS nombreCompleto,
+  b.idBoleta,
+  b.fechaEnd,
+  b.totalBoleta,
+  e.nombreEstatus,
+  m.tipoPago
+FROM
+  cliente AS c
+      JOIN
+  boleta AS b ON c.idCliente = b.idCliente
+      JOIN
+  estatus AS e ON b.statusBoleta = e.idstatus
+      JOIN
+  metodoPago AS m ON b.metodoPago = m.idmetodoPago
+WHERE
+  DATE(b.fechaBoleta) = CURDATE()
+ORDER BY
+  b.fechaBoleta DESC;
+`;
+  const total = `SELECT 
+SUM(b.totalBoleta) AS totalDelDia
+FROM
+boleta AS b
+WHERE
+DATE(b.fechaBoleta) = CURDATE();`;
+  const queryTotal = `SELECT 
+DATE_FORMAT(b.fechaBoleta, '%d/%m/%Y') AS fecha_formateada,
+m.tipoPago,
+SUM(b.totalBoleta) AS totalPorTipoPago
+FROM
+cliente AS c
+    JOIN
+boleta AS b ON c.idCliente = b.idCliente
+    JOIN
+estatus AS e ON b.statusBoleta = e.idstatus
+    JOIN
+metodoPago AS m ON b.metodoPago = m.idmetodoPago
+WHERE
+DATE(b.fechaBoleta) = CURDATE()
+GROUP BY
+DATE(b.fechaBoleta), m.tipoPago
+ORDER BY
+b.fechaBoleta DESC;`;
+  try {
+    const [result] = await pool.query(queryControl);
+    const [resultTotal] = await pool.query(queryTotal);
+    const [consultaTotal] = await pool.query(total);
+    console.log(consultaTotal);
+    res.render("control/viewsControl", {
+      boletaResult: result,
+      totalResult: resultTotal,
+      totalDia: consultaTotal,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };

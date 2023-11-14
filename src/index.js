@@ -28,6 +28,7 @@ app.set("view engine", ".hbs");
 app.use(Morgan("dev"));
 app.use(Express.urlencoded({ extended: true }));
 app.use(Express.json());
+app.use(Express.static("public")); // Para servir archivos estáticos, como los de Bootstrap y Datepicker
 
 // Routes
 app.get("/", (req, res) => {

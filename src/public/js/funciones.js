@@ -25,22 +25,33 @@ fechaInicioInput.addEventListener("change", function () {
   }
 });
 
-// Funcion Para calcular edad
-
 $(document).ready(function () {
-  $("#searchForm").submit(function (event) {
-    event.preventDefault();
-    const searchTerm = $("#searchInput").val();
+  // Configura Datepicker
+  $("#datepicker").datepicker({
+    format: "yyyy-mm-dd",
+    todayBtn: "linked",
+    todayHighlight: true,
+    autoclose: true,
+  });
 
+  // Maneja el evento de selección de fecha
+  $("#datepicker").on("changeDate", function (e) {
+    const fechaSeleccionada = e.format();
+
+    // Realiza una solicitud al servidor para obtener los datos por la fecha seleccionada
     $.ajax({
-      type: "GET",
-      url: `/buscar?query=${query}`, // Ruta de búsqueda en el servidor
-      success: function (data) {
-        // Procesa los resultados recibidos del servidor y muéstralos en #searchResults
-        $("#searchResults").html(JSON.stringify(data));
+      method: "POST",
+      url: "/control/:fecha",
+      data: { fecha: fechaSeleccionada },
+      success: function (response) {
+        const datos = response.datos;
+        // Actualiza la vista con los datos obtenidos
+        $(
+          "#datos-por-fecha"
+        ).html(/* Formatea y muestra los datos como prefieras */);
       },
       error: function (error) {
-        console.error("Error en la solicitud AJAX: " + error);
+        console.error("Error al obtener datos por fecha:", error);
       },
     });
   });

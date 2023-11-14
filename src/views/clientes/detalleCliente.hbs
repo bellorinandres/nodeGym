@@ -1,16 +1,10 @@
   {{#each clienteData}}
 <div class="container mt-5">
   <h2 class="mb-4">
-
-    <a href="/viewClientes" class="btn btn-light btn-lg">
+    <a href="/viewClientes" class="btn btn-light">
       <i class="fa-solid fa-arrow-left"></i>
-
     </a>
     Detalles del Cliente
-    <a href="/editCliente/{{idCliente}}" class="btn btn-warning mb-3  ">
-      <i class="fa-regular fa-pen-to-square"></i>
-      Editar
-    </a>
   </h2>
     <div class="row mb-4">
       <div class="col-md-6">
@@ -25,8 +19,11 @@
           <a href="https://wa.me/+51{{telefono}}" target="_blank">
             {{telefono}}
           </a>
-
-        </p>
+        </p>        
+        <a href="/editCliente/{{idCliente}}" class="btn btn-warning mb-1">
+          <i class="fa-regular fa-pen-to-square"></i>
+          Editar
+        </a>
       </div>
     </div>
     <h2 class="mt-4">Historial de Boletas

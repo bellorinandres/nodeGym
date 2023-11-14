@@ -23,16 +23,17 @@
             <table class="table table-sm align-middle">
                 <thead>
                     <tr class="table-dark">
-                        <th scope="col" >DNI</th>
-                        <th scope="col" >Nombre Completo</th>
-                        <th scope="col" >Telefono</th>
-                        <th scope="col" >Acciones</th>
+                        <th scope="col" class="col-1">#</th>
+                        <th scope="col" class="col-2">DNI</th>
+                        <th scope="col" class="col-3">Nombre Completo</th>
+                        <th scope="col" class="col-3">Telefono</th>
+                        <th scope="col" class="col-3">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each clientes}}
                     <tr>
-                        
+                        <td>{{@index}}</td>
                         <td>{{dniCliente}}</td>
                         <td>
                             <a href="/detalleCliente/{{idCliente}}" class="btn btn-light">
